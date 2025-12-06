@@ -36,7 +36,7 @@ function setLanguage(lang) {
     }
 }
 
-// --- Microscope Background Animation ---
+// --- Microscope Background Animation (Microbial Dark Matter) ---
 function initMicroscopeBg() {
     const canvas = document.createElement('canvas');
     canvas.id = 'microscope-canvas';
@@ -49,81 +49,143 @@ function initMicroscopeBg() {
 
     let width, height;
     let particles = [];
+    // Mouse tracking
+    let mouse = { x: null, y: null, radius: 150 };
+
+    window.addEventListener('mousemove', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = event.clientX - rect.left;
+        mouse.y = event.clientY - rect.top;
+    });
+
+    // Clear mouse position when leaving to prevent stuck effect
+    window.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+    });
 
     function resize() {
         width = canvas.width = container.offsetWidth;
         height = canvas.height = container.offsetHeight;
+        initParticles();
     }
 
     window.addEventListener('resize', resize);
-    resize();
 
     class Particle {
         constructor() {
-            this.input();
-        }
-
-        input() {
             this.x = Math.random() * width;
             this.y = Math.random() * height;
+
+            // Random velocity
             this.vx = (Math.random() - 0.5) * 0.5;
             this.vy = (Math.random() - 0.5) * 0.5;
-            this.size = Math.random() * 20 + 5;
-            this.color = `rgba(94, 139, 126, ${Math.random() * 0.2})`; // variable opacity
-            this.hasNucleus = Math.random() > 0.5;
+
+            // Type: visible (standard) or hidden (uncultured)
+            // 30% visible, 70% hidden to emphasize the "Dark Matter" concept
+            this.isHidden = Math.random() > 0.3;
+
+            this.size = Math.random() * 5 + 2;
+
+            // Colors: Visible = Primary/Dark, Hidden = Accent/Light (glows when revealed)
+            // Using RGB for easy alpha manipulation
+            if (this.isHidden) {
+                // Secondary color / reddish tint? Or just slightly different
+                this.baseColor = '94, 139, 126'; // #5E8B7E
+            } else {
+                this.baseColor = '47, 93, 98'; // #2F5D62
+            }
         }
 
         update() {
             this.x += this.vx;
             this.y += this.vy;
 
-            // Wrap around screen
-            if (this.x < -50) this.x = width + 50;
-            if (this.x > width + 50) this.x = -50;
-            if (this.y < -50) this.y = height + 50;
-            if (this.y > height + 50) this.y = -50;
+            // Bounce off edges? Or wrap. Let's bounce for network stability
+            if (this.x < 0 || this.x > width) this.vx = -this.vx;
+            if (this.y < 0 || this.y > height) this.vy = -this.vy;
+
+            // Distinguish interaction based on mouse
+            let dx = mouse.x - this.x;
+            let dy = mouse.y - this.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            // Interaction: Revealed if close to mouse
+            // Alpha:
+            // Visible particles: Always ~0.6
+            // Hidden particles: 0.1 normally, up to 1.0 when close to mouse
+
+            if (this.isHidden) {
+                if (distance < mouse.radius && mouse.x !== null) {
+                    this.alpha = 1 - (distance / mouse.radius);
+                    if (this.alpha < 0.1) this.alpha = 0.1;
+                } else {
+                    this.alpha = 0.05; // Almost invisible
+                }
+            } else {
+                this.alpha = 0.5;
+            }
         }
 
         draw(ctx) {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fillStyle = this.color;
+            ctx.fillStyle = `rgba(${this.baseColor}, ${this.alpha})`;
             ctx.fill();
-
-            // Draw "nucleus" for some particles
-            if (this.hasNucleus) {
-                ctx.beginPath();
-                ctx.arc(this.x + this.size * 0.2, this.y - this.size * 0.2, this.size * 0.3, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(47, 93, 98, 0.1)';
-                ctx.fill();
-            }
-
-            // Simple membrane effect (stroke)
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
-            ctx.lineWidth = 1;
-            ctx.stroke();
         }
     }
 
     function initParticles() {
         particles = [];
-        const particleCount = Math.floor(width * height / 15000); // Density based on area
+        const particleCount = (width * height) / 9000; // Increase density
         for (let i = 0; i < particleCount; i++) {
             particles.push(new Particle());
         }
     }
 
-    initParticles();
-
     function animate() {
+        requestAnimationFrame(animate);
         ctx.clearRect(0, 0, width, height);
+
+        // Update and Draw Particles
         particles.forEach(p => {
             p.update();
             p.draw(ctx);
         });
-        requestAnimationFrame(animate);
+
+        // Draw Connecting Lines (Community)
+        connectParticles();
     }
 
+    function connectParticles() {
+        let opacityValue = 1;
+        for (let a = 0; a < particles.length; a++) {
+            for (let b = a; b < particles.length; b++) {
+                let dx = particles[a].x - particles[b].x;
+                let dy = particles[a].y - particles[b].y;
+                let distance = dx * dx + dy * dy;
+
+                if (distance < (100 * 100)) { // connection threshold
+                    // Line opacity is derived from the minimum visibility of the two particles
+                    // If both are hidden and far from mouse, line is invisible.
+                    // If one is revealed, line might show faintly?
+
+                    let minAlpha = Math.min(particles[a].alpha, particles[b].alpha);
+
+                    if (minAlpha > 0.1) {
+                        ctx.strokeStyle = `rgba(47, 93, 98, ${minAlpha * 0.5})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+    }
+
+    resize();
     animate();
 }
 
