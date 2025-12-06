@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>멍멍이 퍼즐 게임</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>강아지 퍼즐맞추기</h1>
+            <p>귀여운 강아지 그림을 완성해보세요!</p>
+        </header>
+
+        <main>
+            <div class="game-area">
+                <div class="board-container">
+                    <div class="board-header">
+                        <h2>퍼즐 보드</h2>
+                        <span id="status-text">조각을 끌어서 놓으세요</span>
+                    </div>
+                    <div id="puzzle-board" class="puzzle-board">
+                        <!-- Grid cells will be generated here -->
+                    </div>
+                </div>
+
+                <div class="pieces-container">
+                    <div class="pieces-header">
+                        <h2>조각 모음</h2>
+                    </div>
+                    <div id="pieces-pool" class="pieces-pool">
+                        <!-- Pieces will be generated here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="btn-reset" class="btn primary">다시 하기</button>
+                <button id="btn-hint" class="btn secondary">힌트 보기</button>
+            </div>
+        </main>
+
+        <!-- Success Modal -->
+        <div id="success-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>축하합니다! 🎉</h2>
+                <p>퍼즐을 모두 맞추셨어요!</p>
+                <button id="btn-modal-close" class="btn primary">닫기</button>
+            </div>
+        </div>
+
+        <!-- Hint Modal / Overlay -->
+        <div id="hint-overlay" class="hint-overlay hidden">
+            <img src="dog_puzzle.png" alt="Original Image">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
