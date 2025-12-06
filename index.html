@@ -8,33 +8,38 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="lang-ko">
 
     <!-- Navigation -->
     <nav>
         <div class="logo">S.K. Lab</div>
         <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about"><span class="lang-en">About</span><span class="lang-ko">소개</span></a></li>
+            <li><a href="#research"><span class="lang-en">Research</span><span class="lang-ko">연구분야</span></a></li>
+            <li><a href="#projects"><span class="lang-en">Projects</span><span class="lang-ko">연구과제</span></a></li>
+            <li><a href="#skills"><span class="lang-en">Skills</span><span class="lang-ko">보유기술</span></a></li>
+            <li><a href="#contact"><span class="lang-en">Contact</span><span class="lang-ko">연락처</span></a></li>
         </ul>
+        <button id="lang-toggle">English</button>
     </nav>
 
     <!-- Hero Section -->
     <header class="hero">
         <div class="hero-bg"></div> <!-- Canvas host -->
         <div class="hero-content">
-            <h1>Molecular Environmental Microbiology</h1>
-            <p>Unveiling the mysteries of groundwater microbial communities.</p>
-            <a href="#about" class="btn">Explore My Work</a>
+            <h1 class="lang-en">Molecular Environmental Microbiology</h1>
+            <h1 class="lang-ko">분자환경미생물학</h1>
+            <p class="lang-en">Unveiling the mysteries of groundwater microbial communities.</p>
+            <p class="lang-ko">지하수 미생물 군집의 비밀을 밝혀냅니다.</p>
+            <a href="#about" class="btn"><span class="lang-en">Explore My Work</span><span class="lang-ko">연구 내용
+                    보기</span></a>
         </div>
     </header>
 
     <!-- About Section -->
     <section id="about" class="container">
-        <h2>About Me</h2>
+        <h2 class="lang-en">About Me</h2>
+        <h2 class="lang-ko">자기 소개</h2>
         <div class="about-grid">
             <div class="about-image">
                 <!-- Placeholder for user image, using a solid color/gradient in CSS if image missing -->
@@ -43,56 +48,88 @@
             </div>
             <div class="about-text">
                 <h3>Hello, I'm Sumin Kim</h3>
-                <p>저는 <strong>분자환경미생물학(Molecular Environmental Microbiology)</strong>을 연구하는 학생입니다. 주로 지하수 환경에 서식하지만 배양이
-                    어려운 <strong>난배양성 미생물(Uncultured Microorganisms)</strong>들의 생태적 역할과 기능을 규명하는 데 주력하고 있습니다.</p>
-                <p>최신 분자생물학적 기법을 통해 보이지 않는 지하 세계의 <strong>미생물 군집(Microbial Community)</strong>을 분석하고, 이들이 환경에 미치는 영향을
-                    이해하고자 합니다.</p>
+                <div class="lang-ko">
+                    <p>저는 <strong>분자환경미생물학(Molecular Environmental Microbiology)</strong>을 연구하는 학생입니다. 주로 지하수 환경에 서식하지만
+                        배양이
+                        어려운 <strong>난배양성 미생물(Uncultured Microorganisms)</strong>들의 생태적 역할과 기능을 규명하는 데 주력하고 있습니다.</p>
+                    <p>최신 분자생물학적 기법을 통해 보이지 않는 지하 세계의 <strong>미생물 군집(Microbial Community)</strong>을 분석하고, 이들이 환경에 미치는
+                        영향을
+                        이해하고자 합니다.</p>
+                </div>
+                <div class="lang-en">
+                    <p>I am a student researcher in <strong>Molecular Environmental Microbiology</strong>. My primary
+                        focus is on elucidating the ecological roles and functions of <strong>Uncultured
+                            Microorganisms</strong> that inhabit groundwater environments.</p>
+                    <p>Using advanced molecular biological techniques, I aim to analyze <strong>Microbial
+                            Communities</strong> in the invisible subsurface world and understand their impact on the
+                        environment.</p>
+                </div>
                 <br>
                 <h3>Education</h3>
-                <p><strong>OO University</strong> | Dept. of Microbiology</p>
-                <p>2020 - Present</p>
+                <div class="lang-en">
+                    <p><strong>OO University</strong> | Dept. of Microbiology</p>
+                    <p>2020 - Present</p>
+                </div>
+                <div class="lang-ko">
+                    <p><strong>OO대학교</strong> | 미생물학과</p>
+                    <p>2020 - 현재</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Research Interests -->
     <section id="research" class="container">
-        <h2>Research Interests</h2>
+        <h2 class="lang-en">Research Interests</h2>
+        <h2 class="lang-ko">연구 분야</h2>
         <div class="card-grid">
             <div class="card">
                 <div class="card-icon">🌍</div>
                 <h3>Environmental Microbiology</h3>
-                <p>분자환경미생물학적 접근을 통해 다양한 환경, 특히 지하수 생태계의 미생물 다양성과 기능을 심도 있게 연구합니다.</p>
+                <p class="lang-ko">분자환경미생물학적 접근을 통해 다양한 환경, 특히 지하수 생태계의 미생물 다양성과 기능을 심도 있게 연구합니다.</p>
+                <p class="lang-en">Studying microbial diversity and functions in various environments, especially
+                    groundwater ecosystems, via molecular approaches.</p>
             </div>
             <div class="card">
                 <div class="card-icon">🔍</div>
                 <h3>Uncultured Microorganisms</h3>
-                <p>전통적인 배양법으로는 확인하기 어려운 '미생물 암흑물질(Microbial Dark Matter)'인 난배양성 미생물을 탐구합니다.</p>
+                <p class="lang-ko">전통적인 배양법으로는 확인하기 어려운 '미생물 암흑물질(Microbial Dark Matter)'인 난배양성 미생물을 탐구합니다.</p>
+                <p class="lang-en">Investigating 'Microbial Dark Matter'—uncultured microorganisms difficult to identify
+                    using traditional culture methods.</p>
             </div>
             <div class="card">
                 <div class="card-icon">🧬</div>
                 <h3>Microbial Community</h3>
-                <p>지하수 내 미생물 군집의 구조와 상호작용 네트워크를 분석하여 환경 변화에 따른 군집의 동태를 파악합니다.</p>
+                <p class="lang-ko">지하수 내 미생물 군집의 구조와 상호작용 네트워크를 분석하여 환경 변화에 따른 군집의 동태를 파악합니다.</p>
+                <p class="lang-en">Analyzing the structure and interaction networks of groundwater microbial communities
+                    to understand their dynamics under environmental changes.</p>
             </div>
         </div>
     </section>
 
     <!-- Projects -->
     <section id="projects" class="container">
-        <h2>Academic Projects</h2>
+        <h2 class="lang-en">Academic Projects</h2>
+        <h2 class="lang-ko">주요 연구 과제</h2>
         <div class="project-list">
             <div class="project-item">
                 <div class="project-year">2023</div>
                 <div class="project-info">
-                    <h3>토양 내 항생제 내성균 분포 조사</h3>
-                    <p>학교 인근 토양 샘플을 채취하여 항생제 내성균을 분리 및 동정하고, 내성 유전자의 확산 패턴을 분석했습니다.</p>
+                    <h3 class="lang-ko">토양 내 항생제 내성균 분포 조사</h3>
+                    <h3 class="lang-en">Antibiotic Resistant Bacteria in Soil</h3>
+                    <p class="lang-ko">학교 인근 토양 샘플을 채취하여 항생제 내성균을 분리 및 동정하고, 내성 유전자의 확산 패턴을 분석했습니다.</p>
+                    <p class="lang-en">Isolated and identified antibiotic-resistant bacteria from soil samples near the
+                        campus and analyzed the dissemination patterns of resistance genes.</p>
                 </div>
             </div>
             <div class="project-item">
                 <div class="project-year">2022</div>
                 <div class="project-info">
-                    <h3>유산균의 발효 특성 비교 연구</h3>
-                    <p>다양한 탄소원에 따른 유산균의 생장 속도와 산 생성 능력을 비교 분석하여 최적 발효 조건을 도출했습니다.</p>
+                    <h3 class="lang-ko">유산균의 발효 특성 비교 연구</h3>
+                    <h3 class="lang-en">Fermentation Characteristics of Lactic Acid Bacteria</h3>
+                    <p class="lang-ko">다양한 탄소원에 따른 유산균의 생장 속도와 산 생성 능력을 비교 분석하여 최적 발효 조건을 도출했습니다.</p>
+                    <p class="lang-en">Compared growth rates and acid production capabilities of lactic acid bacteria
+                        under various carbon sources to determine optimal fermentation conditions.</p>
                 </div>
             </div>
         </div>
@@ -100,7 +137,8 @@
 
     <!-- Skills -->
     <section id="skills" class="container">
-        <h2>Laboratory Skills</h2>
+        <h2 class="lang-en">Laboratory Skills</h2>
+        <h2 class="lang-ko">실험 기술</h2>
         <div class="skills-container">
             <div class="skill-cell">
                 <span class="skill-name">PCR</span>
@@ -122,9 +160,11 @@
 
     <!-- Contact -->
     <section id="contact" class="container">
-        <h2>Get in Touch</h2>
+        <h2 class="lang-en">Get in Touch</h2>
+        <h2 class="lang-ko">문의하기</h2>
         <div class="contact-container">
-            <p>공동 연구 제안이나 질문이 있으시다면 언제든 연락해주세요.</p>
+            <p class="lang-ko">공동 연구 제안이나 질문이 있으시다면 언제든 연락해주세요.</p>
+            <p class="lang-en">Please feel free to reach out for collaboration proposals or any inquiries.</p>
             <div class="contact-info">
                 <a href="mailto:contact@email.com" class="contact-link">
                     ✉️ contact@email.com

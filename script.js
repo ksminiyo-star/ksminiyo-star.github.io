@@ -2,7 +2,39 @@ document.addEventListener('DOMContentLoaded', () => {
     initMicroscopeBg();
     initScrollReveal();
     initSmoothScroll();
+    initLanguageToggle();
 });
+
+// --- Language Toggle ---
+function initLanguageToggle() {
+    const toggleBtn = document.getElementById('lang-toggle');
+    if (!toggleBtn) return;
+
+    // Check localStorage or default to Korean
+    const currentLang = localStorage.getItem('suminweb-lang') || 'ko';
+    setLanguage(currentLang);
+
+    toggleBtn.addEventListener('click', () => {
+        const isKo = document.body.classList.contains('lang-ko');
+        setLanguage(isKo ? 'en' : 'ko');
+    });
+}
+
+function setLanguage(lang) {
+    document.body.classList.remove('lang-ko', 'lang-en');
+    document.body.classList.add(`lang-${lang}`);
+    localStorage.setItem('suminweb-lang', lang);
+
+    // Update button text
+    const toggleBtn = document.getElementById('lang-toggle');
+    if (toggleBtn) {
+        // If current is KO, button offers EN switch, and vice versa.
+        // Or just show current mode. Let's show "KO / EN" style but maybe highlight active.
+        // Simple text: "English" when in KR mode, "한글" when in EN mode?
+        // Or just toggle text "EN" / "KR"
+        toggleBtn.textContent = lang === 'ko' ? 'English' : '한글';
+    }
+}
 
 // --- Microscope Background Animation ---
 function initMicroscopeBg() {

@@ -365,3 +365,31 @@ footer {
         display: none; /* Simplification for mobile, usually would need hamburger */
     }
 }
+
+/* --- Language Toggle --- */
+#lang-toggle {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: 1px solid var(--color-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font-main);
+    transition: all 0.3s ease;
+    margin-left: var(--spacing-sm);
+}
+
+#lang-toggle:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+}
+
+/* Visibility Logic */
+body.lang-ko .lang-en {
+    display: none !important;
+}
+
+body.lang-en .lang-ko {
+    display: none !important;
+}
