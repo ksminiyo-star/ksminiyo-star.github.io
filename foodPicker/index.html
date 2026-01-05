@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘 뭐 먹지?</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Open Graph Sharing Info -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="오늘 뭐 먹지? | 랜덤 메뉴 추천기">
+    <meta property="og:description" content="고민되는 식사 메뉴, 카드로 뽑아서 결정해보세요! 원하는 메뉴를 직접 입력해서 뽑을 수도 있답니다. 🍱🥘">
+    <meta property="og:image" content="https://ksminiyo-star.github.io/foodPicker/preview.png">
+    <meta property="og:url" content="https://ksminiyo-star.github.io/foodPicker/">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Home View -->
+        <div id="homeView" class="view-section">
+            <div class="floating-bg" id="floatingBg"></div>
+            <div class="home-content">
+                <div class="hero-icon">🍱</div>
+                <h1>오늘 뭐 먹지?</h1>
+                <p>고민되는 식사 메뉴, 카드로 뽑아보세요!</p>
+                <div class="btn-group">
+                    <button id="startBtn" class="btn primary big-btn">랜덤 메뉴 뽑기 🎲</button>
+                    <button id="customBtn" class="btn secondary big-btn">직접 입력하기 ✏️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input View -->
+        <div id="inputView" class="view-section hidden">
+            <header>
+                <div class="header-content">
+                    <button id="inputBackBtn" class="btn icon-btn" title="뒤로가기">⬅️</button>
+                    <h1>메뉴 직접 입력</h1>
+                </div>
+                <p>먹고 싶은 메뉴를 줄바꿈이나 쉼표(,)로 구분해서 적어주세요.</p>
+            </header>
+
+            <div class="input-container">
+                <textarea id="customInput" placeholder="예시:&#13;&#10;김치찌개&#13;&#10;삼겹살&#13;&#10;파스타"></textarea>
+                <button id="startGameCustomBtn" class="btn primary big-btn" style="width: 100%">이걸로 뽑기!</button>
+            </div>
+        </div>
+
+        <!-- Game View -->
+        <div id="gameView" class="view-section hidden">
+            <header>
+                <button id="homeBtn" class="btn icon-btn" title="홈으로">🏠</button>
+                <div class="header-text">
+                    <h1>메뉴 고르기</h1>
+                    <p id="gameInstruction">카드를 섞고 3개를 뽑아보세요!</p>
+                </div>
+            </header>
+
+            <main>
+                <div class="card-table" id="cardTable">
+                    <!-- 카드가 여기에 생성됩니다 -->
+                </div>
+
+                <div class="result-area hidden" id="resultArea">
+                    <h2>오늘의 추천 메뉴</h2>
+                    <div class="selected-foods" id="selectedFoods"></div>
+                </div>
+            </main>
+
+            <div class="controls">
+                <button id="shuffleBtn" class="btn primary">카드 섞기</button>
+                <button id="resetBtn" class="btn secondary">다시 하기</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
